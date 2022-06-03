@@ -23,11 +23,15 @@ public class Main extends JFrame {
 
 
         JButton btn=new JButton("click");
+        JLabel phoneLabel=new JLabel("Phone number:");
+        JLabel messageLabel=new JLabel("Enter a Message:");
 
 
         // TODO: add placeholders
-        frame.add(new TextField("Enter your Phone number"));
-        frame.add(new TextField("Enter a Message"));
+        frame.add(phoneLabel);
+        frame.add(new TextField(10));
+        frame.add(messageLabel);
+        frame.add(new TextField(10));
         frame.add(btn);
         frame.setVisible(true);
 
@@ -36,27 +40,24 @@ public class Main extends JFrame {
                 "C:\\Users\\atia4\\Downloads\\chromedriver_win32\\chromedriver.exe");
 
 
-        btn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(e.getSource() == btn) {
-                    ChromeDriver driver = new ChromeDriver();
-                   driver.get("https://web.whatsapp.com/");
-                    driver.manage().window().maximize();
-                    while  (true){
-                    if (driver.findElements(By.className("_3ArsE")).size()==1) {
-                        System.out.println("Login successfully");
-                        JLabel successLabel=new JLabel("Login successfully");
-                        frame.add(successLabel);
-                        frame.setVisible(true);
+        btn.addActionListener(e -> {
+            if(e.getSource() == btn) {
+                ChromeDriver driver = new ChromeDriver();
+               driver.get("https://web.whatsapp.com/");
+                driver.manage().window().maximize();
+                while  (true){
+                if (driver.findElements(By.className("_3ArsE")).size()==1) {
+                    System.out.println("Login successfully");
+                    JLabel successLabel=new JLabel("Login successfully");
+                    frame.add(successLabel);
+                    frame.setVisible(true);
 
-                        break;
-
-                    }
-                    }
-
+                    break;
 
                 }
+                }
+
+
             }
         });
 
